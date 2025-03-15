@@ -34,17 +34,21 @@ export function Home() {
   }
   
   function handleParticipantRemove(name: string) {
-    Alert.alert("Remove", `Remove the participant ${name}?`, [
-      {
-        text: "Yes",
-        onPress: () => Alert.alert("Deleted"),
-      },
-      {
-        text: "No",
-        style: "cancel",
-      },
-    ]);
-    
+    Alert.alert(
+      "Remove", 
+      `Remove the participant ${name}?`, 
+      [
+        {
+          text: "Yes",
+          style: "destructive",
+          onPress: () => console.log(`Participant ${name} removed`)
+        },
+        {
+          text: "No",
+          style: "cancel"
+        },
+      ]
+    );
   }
 
   return (
