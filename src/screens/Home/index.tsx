@@ -1,9 +1,10 @@
 import {
-  Text,
-  TextInput,
   View,
-  TouchableOpacity,
+  Text,
+  Alert,
   FlatList,
+  TextInput,
+  TouchableOpacity,
 } from "react-native";
 import { styles } from "./styles";
 import Participant from "../../components/Participant";
@@ -19,14 +20,31 @@ export function Home() {
     "Rita",
     "Gabriel",
     "Érico",
+    "Marta",
+    "José",
+    "João",
   ];
 
   function handleParticipantAdd() {
-    console.log("Deu bom ");
-  }
 
+    if(participants.includes("Wellington")) {
+      return Alert.alert("Participant already exists", "Please enter a different name");
+    }
+    
+  }
+  
   function handleParticipantRemove(name: string) {
-    console.log("Removeu");
+    Alert.alert("Remove", `Remove the participant ${name}?`, [
+      {
+        text: "Yes",
+        onPress: () => Alert.alert("Deleted"),
+      },
+      {
+        text: "No",
+        style: "cancel",
+      },
+    ]);
+    
   }
 
   return (
@@ -54,7 +72,7 @@ export function Home() {
           <Participant
             key={item}
             name={item}
-            onRemove={() => handleParticipantRemove("Wellington")}
+            onRemove={() => handleParticipantRemove(item)}
           />
         )}
         ListEmptyComponent={() => (
@@ -67,3 +85,4 @@ export function Home() {
     </View>
   );
 }
+ 
